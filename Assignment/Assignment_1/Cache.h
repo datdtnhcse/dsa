@@ -69,29 +69,35 @@ Node* BSTree::searchNode(int addr, Node* node) {
 }
 
 Node* BSTree::minNode(Node* node) {
-    if (node == nullptr) return nullptr;
-    if (node->left == nullptr) return node;
-    return minNode(node->left);
+    Node* cur = node;
+    while (cur && cur->left != nullptr) cur = cur->left;
+    return cur;
 }
 
 Node* BSTree::deleteNode(int addr, Node* node) {
-        Node* tmp;
-        if (node == nullptr) return nullptr;
-        else if(addr < node->address) node->left = deleteNode(addr, node->left);
-        else if(addr > node->address) node->right = deleteNode(addr, node->right);
-        else if(node->left && node->right) {
-            tmp = minNode(node->right);
-            node->address = tmp->address;
-            node->right = deleteNode(node->address, node->right);
+    if (node == nullptr) return node;
+    if (addr < node->address) node->left = deleteNode(addr, node->left);
+    else if (addr > node->address) node->right = deleteNode(addr, node->right);
+    else {
+        if (node->left == nullptr && node->right == nullptr) return nullptr;
+        else if (node->left == nullptr) {
+            Node* tmp = node->right;
+            delete node;
+            return tmp;
         }
-        else {
-            tmp = node;
-            if (node->left == nullptr) node = node->right;
-            else if(node->right == nullptr) node = node->left;
-            delete tmp;
+        else if (node->right == nullptr) {
+            Node* tmp = node->left;
+            delete node;
+            return tmp;
         }
-        return node;
+        Node* tmp = minNode(node->right);
+        node->address = tmp->address;
+        node->index = tmp->index;
+        node->right = deleteNode(tmp->address, node->right);
     }
+    return node;
+}
+
 
 void BSTree::minusIndexOfNode(Node* r00t) {
     if (r00t == nullptr) return;

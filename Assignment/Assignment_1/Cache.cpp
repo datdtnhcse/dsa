@@ -23,10 +23,10 @@ Elem* Cache::put(int addr, Data* cont) {
     else { // LIFO and FIFO
         if (addr%2 == 0) { // FIFO
             int ad = arr[0]->addr; // get [0] elem's address
-                
+            
             Node* r00t = Tree.root;
-            Tree.deleteNode(ad, r00t); // delete [0] in Tree
-
+            Tree.root = Tree.deleteNode(ad, Tree.root); // delete [0] in Tree
+           
             Elem* delElem = arr[0]; // delete [0] in *arr
             for (int i = 0; i < p-1; i++) { 
                 arr[i] = arr[i+1];
@@ -46,7 +46,7 @@ Elem* Cache::put(int addr, Data* cont) {
             int ad = arr[p-1]->addr; // get [0] elem's address
                 
             Node* r00t = Tree.root;
-            Tree.deleteNode(ad, r00t); // delete [p-1] in Tree
+            Tree. root = Tree.deleteNode(ad, r00t); // delete [p-1] in Tree
 
             Elem* delElem = arr[p-1]; // delete [p-1] in *arr
             Elem* newElem = new Elem(addr, cont, true); // create new Elem to put
