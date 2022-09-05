@@ -21,7 +21,7 @@ class BSTree {
     BSTree();
     ~BSTree() {
         Node* r00t = root;
-        deleteTree(r00t);
+        deleteTree(r00t );
     }
     Node* addNode(int addr, int index, Node* node);
     Node* searchNode(int addr, Node* node);

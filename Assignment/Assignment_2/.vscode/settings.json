@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "cstdlib": "c",
+        "algorithm": "c",
+        "functional": "c",
+        "new": "cpp",
+        "iostream": "c",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "array": "c",
+        "string_view": "c",
+        "istream": "c",
+        "limits": "c",
+        "ostream": "c",
+        "sstream": "c",
+        "streambuf": "c"
+    }
+}
